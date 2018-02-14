@@ -21,7 +21,8 @@ preferences {
  
 metadata {
 	definition (name: "Garage Door Toggle", namespace: "lanix13", author: "Lance Grover") {
-		capability "Momentary"
+		//capability "Momentary"
+        capability "Switch"
 	}
 
 
@@ -31,8 +32,8 @@ metadata {
 
 	tiles {
 		standardTile("button", "device.switch", width: 2, height: 2, canChangeIcon: true) {
-			state "off", label: 'Off', action: "switch.push", icon: "st.switches.switch.off", backgroundColor: "#ffffff", nextState: "on"
-				state "on", label: 'On', action: "switch.push", icon: "st.switches.switch.on", backgroundColor: "#79b821", nextState: "off"
+			state "off", label: 'Off', action: "switch.off", icon: "st.switches.switch.off", backgroundColor: "#ffffff", nextState: "on"
+				state "on", label: 'On', action: "switch.on", icon: "st.switches.switch.on", backgroundColor: "#79b821", nextState: "off"
 		}
 	//	standardTile("offButton", "device.button", width: 1, height: 1, canChangeIcon: true) {
 	//		state "default", label: 'Force Off', action: "switch.push", icon: "st.switches.switch.off", backgroundColor: "#ffffff"
@@ -50,6 +51,14 @@ metadata {
 def parse(String description) {
 	log.debug "Parsing '${description}'"
 
+}
+
+def on() {
+push()
+}
+
+def off() {
+push()
 }
 
 // handle commands
